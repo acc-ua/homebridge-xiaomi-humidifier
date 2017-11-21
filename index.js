@@ -59,8 +59,8 @@ function MiHumidifierPlatform(log, config, api) {
     }
     
     this.log.info("[MiHumidifierPlatform][INFO]***********************************************************");
-    this.log.info("[MiHumidifierPlatform][INFO]          MiHumidifierPlatform v%s by Accbox", packageFile.version);
-    this.log.info("[MiHumidifierPlatform][INFO]  GitHub: https://github.com/accbox/homebridge-mi-humidifier ");
+    this.log.info("[MiHumidifierPlatform][INFO]          MiHumidifierPlatform v%s by acc-ua", packageFile.version);
+    this.log.info("[MiHumidifierPlatform][INFO]  GitHub: https://github.com/accbox/homebridge-xiaomi-humidifier ");
     this.log.info("[MiHumidifierPlatform][INFO]                                       ");
     this.log.info("[MiHumidifierPlatform][INFO]***********************************************************");
     this.log.info("[MiHumidifierPlatform][INFO]start success...");
