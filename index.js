@@ -1,11 +1,11 @@
-require('./Devices/ZhiMiFan');
+require('./Devices/MiHumidifier');
 
 var fs = require('fs');
 var packageFile = require("./package.json");
 var PlatformAccessory, Accessory, Service, Characteristic, UUIDGen;
 
 module.exports = function(homebridge) {
-    if(!isConfig(homebridge.user.configPath(), "platforms", "MiFanPlatform")) {
+    if(!isConfig(homebridge.user.configPath(), "platforms", "MiHumidifierPlatform")) {
         return;
     }
     
@@ -15,7 +15,7 @@ module.exports = function(homebridge) {
     Characteristic = homebridge.hap.Characteristic;
     UUIDGen = homebridge.hap.uuid;
 
-    homebridge.registerPlatform('homebridge-mi-fan', 'MiFanPlatform', MiFanPlatform, true);
+    homebridge.registerPlatform('homebridge-mi-fan', 'MiHumidifierPlatform', MiHumidifierPlatform, true);
 }
 
 function isConfig(configFile, type, name) {
@@ -40,7 +40,7 @@ function isConfig(configFile, type, name) {
     return false;
 }
 
-function MiFanPlatform(log, config, api) {
+function MiHumidifierPlatform(log, config, api) {
     if(null == config) {
         return;
     }
@@ -58,15 +58,15 @@ function MiFanPlatform(log, config, api) {
         this.api = api;
     }
     
-    this.log.info("[MiFanPlatform][INFO]***********************************************************");
-    this.log.info("[MiFanPlatform][INFO]          MiFanPlatform v%s By YinHang", packageFile.version);
-    this.log.info("[MiFanPlatform][INFO]  GitHub: https://github.com/YinHangCode/homebridge-mi-fan ");
-    this.log.info("[MiFanPlatform][INFO]                                      QQ Group: 107927710  ");
-    this.log.info("[MiFanPlatform][INFO]***********************************************************");
-    this.log.info("[MiFanPlatform][INFO]start success...");
+    this.log.info("[MiHumidifierPlatform][INFO]***********************************************************");
+    this.log.info("[MiHumidifierPlatform][INFO]          MiHumidifierPlatform v%s by Accbox", packageFile.version);
+    this.log.info("[MiHumidifierPlatform][INFO]  GitHub: https://github.com/accbox/homebridge-mi-humidifier ");
+    this.log.info("[MiHumidifierPlatform][INFO]                                       ");
+    this.log.info("[MiHumidifierPlatform][INFO]***********************************************************");
+    this.log.info("[MiHumidifierPlatform][INFO]start success...");
 }
 
-MiFanPlatform.prototype = {
+MiHumidifierPlatform.prototype = {
     accessories: function(callback) {
         var myAccessories = [];
 
@@ -81,14 +81,14 @@ MiFanPlatform.prototype = {
                     continue;
                 }
                 
-//              if (deviceCfg['type'] == "ZhiMiFan") {
-                    new ZhiMiFan(this, deviceCfg).forEach(function(accessory, index, arr){
+//              if (deviceCfg['type'] == "MiHumidifier") {
+                    new MiHumidifier(this, deviceCfg).forEach(function(accessory, index, arr){
                         myAccessories.push(accessory);
                     });
 //              } else {
 //              }
             }
-            this.log.info("[MiFanPlatform][INFO]device size: " + deviceCfgs.length + ", accessories size: " + myAccessories.length);
+            this.log.info("[MiHumidifierPlatform][INFO]device size: " + deviceCfgs.length + ", accessories size: " + myAccessories.length);
         }
         
         callback(myAccessories);
