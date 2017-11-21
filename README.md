@@ -1,13 +1,11 @@
-# homebridge-mi-fan
-[![npm version](https://badge.fury.io/js/homebridge-mi-fan.svg)](https://badge.fury.io/js/homebridge-mi-fan)
+# homebridge-mi-humidifier
+ 
 
 XiaoMi fan plugins for HomeBridge.   
    
-Thanks for [nfarina](https://github.com/nfarina)(the author of [homebridge](https://github.com/nfarina/homebridge)), [OpenMiHome](https://github.com/OpenMiHome/mihome-binary-protocol), [aholstenson](https://github.com/aholstenson)(the author of [miio](https://github.com/aholstenson/miio)), all other developer and testers.   
+Thanks for [Mr.Yin](https://github.com/YinHangCode/homebridge-mi-fan/) , [nfarina](https://github.com/nfarina)(the author of [homebridge](https://github.com/nfarina/homebridge)), [OpenMiHome](https://github.com/OpenMiHome/mihome-binary-protocol), [aholstenson](https://github.com/aholstenson)(the author of [miio](https://github.com/aholstenson/miio)), all other developer and testers.   
    
-**Note: If you find bugs, please submit them to [issues](https://github.com/YinHangCode/homebridge-mi-fan/issues) or [QQ Group: 107927710](//shang.qq.com/wpa/qunwpa?idkey=8b9566598f40dd68412065ada24184ef72c6bddaa11525ca26c4e1536a8f2a3d).**   
-
-![](https://raw.githubusercontent.com/YinHangCode/homebridge-mi-fan/master/images/Fan.jpg)
+![](https://xiaomi-mi.com/uploads/CatalogueImage/pv_xiaomi-zhimi-uvgi-air-humidifier-white-01_14627_1481298607.jpg)
 
 ## Pre-Requirements
 1.Make sure your IOS version is ios11 or later.   
@@ -17,24 +15,24 @@ If you are using Raspberry Pi, please read [Running-HomeBridge-on-a-Raspberry-Pi
 2. Make sure you can see HomeBridge in your iOS devices, if not, please go back to step 1.   
 3. Install packages.   
 ```
-npm install -g miio homebridge-mi-fan
+TO BE DESCRIBED
 ```
 ## Configuration
 ```
 "platforms": [{
-    "platform": "MiFanPlatform",
+    "platform": "MiHumidiferPlatform",
     "deviceCfgs": [{
         "ip": "192.168.1.xxx",
         "token": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-        "fanName": "room fan",
-        "fanDisable": false,
+        "deviceName": "room Humidifer",
+        "deviceDisable": false,
         "temperatureName": "room temperature",
         "temperatureDisable": false,
         "humidityName": "room humidity",
         "humidityDisable": false,
-        "buzzerSwitchName": "fan buzzer switch",
+        "buzzerSwitchName": "Humidifer buzzer switch",
         "buzzerSwitchDisable": true,
-        "ledBulbName": "fan led switch",
+        "ledBulbName": "Humidifer led switch",
         "ledBulbDisable": true
     }]
 }]
@@ -61,11 +59,6 @@ miio --discover --sync
 Wait until you get output.   
 For more information about token, please refer to [OpenMiHome](https://github.com/OpenMiHome/mihome-binary-protocol) and [miio](https://github.com/aholstenson/miio).   
 ## Version Logs
-### 0.0.4
-1.optimized code.   
-### 0.0.3
-1.optimized code.   
-### 0.0.2
-1.fixed bug that led switch error.   
+  
 ### 0.0.1
-1.support for XiaoMi Fan.   
+1.support for XiaoMi Humidifier as Fan Service (HomeKit Humidifier type is not available yet).   
