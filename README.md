@@ -1,7 +1,7 @@
 # homebridge-mi-humidifier
  
 
-XiaoMi fan plugins for HomeBridge.   
+Xiaomi Humidifier plugin for HomeBridge. Plugin is based on On HomeKit Fan service currently.   
    
 Thanks for [Mr.Yin](https://github.com/YinHangCode/homebridge-mi-fan/) , [nfarina](https://github.com/nfarina)(the author of [homebridge](https://github.com/nfarina/homebridge)), [OpenMiHome](https://github.com/OpenMiHome/mihome-binary-protocol), [aholstenson](https://github.com/aholstenson)(the author of [miio](https://github.com/aholstenson/miio)), all other developer and testers.   
    
