@@ -15,7 +15,7 @@ module.exports = function(homebridge) {
     Characteristic = homebridge.hap.Characteristic;
     UUIDGen = homebridge.hap.uuid;
 
-    homebridge.registerPlatform('homebridge-mi-fan', 'MiHumidifierPlatform', MiHumidifierPlatform, true);
+    homebridge.registerPlatform('homebridge-mi-humidifer', 'MiHumidifierPlatform', MiHumidifierPlatform, true);
 }
 
 function isConfig(configFile, type, name) {
