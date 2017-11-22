@@ -1,6 +1,6 @@
 {
   "name": "homebridge-xiaomi-humidifier",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Xiaomi Humidifier plugin for HomeBridge",
   "repository": {
     "type": "git",
