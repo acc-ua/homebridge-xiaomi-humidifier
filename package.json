@@ -1,20 +1,23 @@
 {
   "name": "homebridge-xiaomi-humidifier",
-  "version": "0.0.4",
+  "version": "1.0.0",
   "description": "Xiaomi Humidifier plugin for HomeBridge",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/acc-ua/homebridge-xiaomi-humidifier.git"
   },
   "keywords": [
-    "homebridge",
-    "xiaomi",
-    "humidifier"
+    "homebridge-plugin"
   ],
   "author": "acc-ua",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/acc-ua/homebridge-xiaomi-humidifier/issues"
+  }
+  ,
+  "engines": {
+    "node": ">=0.12.0",
+    "homebridge": ">=0.4.1"
   },
   "homepage": "https://github.com/acc-ua/homebridge-xiaomi-humidifier#readme"
 }
