@@ -7,8 +7,7 @@ Thanks for [Mr.Yin](https://github.com/YinHangCode/homebridge-mi-fan/) , [nfarin
    
 ![](https://xiaomi-mi.com/uploads/CatalogueImage/pv_xiaomi-zhimi-uvgi-air-humidifier-white-01_14627_1481298607.jpg)
 
-## Pre-Requirements
-1.Make sure your IOS version is ios11 or later.   
+ 
 ## Installation
 1. Install HomeBridge, please follow it's [README](https://github.com/nfarina/homebridge/blob/master/README.md).   
 If you are using Raspberry Pi, please read [Running-HomeBridge-on-a-Raspberry-Pi](https://github.com/nfarina/homebridge/wiki/Running-HomeBridge-on-a-Raspberry-Pi).   
