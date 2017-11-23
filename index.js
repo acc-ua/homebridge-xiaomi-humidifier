@@ -9,13 +9,14 @@ module.exports = function(homebridge) {
         return;
     }
     
+    this.log.debug('conf');
     PlatformAccessory = homebridge.platformAccessory;
     Accessory = homebridge.hap.Accessory;
     Service = homebridge.hap.Service;
     Characteristic = homebridge.hap.Characteristic;
     UUIDGen = homebridge.hap.uuid;
 
-    homebridge.registerPlatform('homebridge-mi-fan', 'MiHumidifierPlatform', MiHumidifierPlatform, true);
+    homebridge.registerPlatform('homebridge-xiaomi-humidifier', 'MiHumidifierPlatform', MiHumidifierPlatform, true);
 }
 
 function isConfig(configFile, type, name) {
