@@ -9,7 +9,6 @@ module.exports = function(homebridge) {
         return;
     }
     
-    this.log.debug('conf');
     PlatformAccessory = homebridge.platformAccessory;
     Accessory = homebridge.hap.Accessory;
     Service = homebridge.hap.Service;
