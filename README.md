@@ -19,7 +19,7 @@ npm install -g miio homebridge-xiaomi-humidifier
 ## Configuration
 ```
 "platforms": [{
-    "platform": "MiHumidiferPlatform",
+    "platform": "MiHumidifierPlatform",
     "deviceCfgs": [{
         "ip": "192.168.1.xxx",
         "token": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
