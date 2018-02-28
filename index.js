@@ -1,4 +1,5 @@
 require('./Devices/MiHumidifier');
+require('./Devices/MiHumidifier2');
 
 var fs = require('fs');
 var packageFile = require("./package.json");
@@ -74,19 +75,19 @@ MiHumidifierPlatform.prototype = {
         if(deviceCfgs instanceof Array) {
             for (var i = 0; i < deviceCfgs.length; i++) {
                 var deviceCfg = deviceCfgs[i];
-//              if(null == deviceCfg['type'] || "" == deviceCfg['type']) {
-//                  continue;
-//              }
                 if(null == deviceCfg['token'] || "" == deviceCfg['token'] || null == deviceCfg['ip'] || "" == deviceCfg['ip']) {
                     continue;
                 }
                 
-//              if (deviceCfg['type'] == "MiHumidifier") {
+              if (deviceCfg['type'] == "Fan") {  //for iOS 10 and lower
                     new MiHumidifier(this, deviceCfg).forEach(function(accessory, index, arr){
                         myAccessories.push(accessory);
                     });
-//              } else {
-//              }
+              } else {
+                    new MiHumidifier2(this, deviceCfg).forEach(function(accessory, index, arr){
+                        myAccessories.push(accessory);
+                    });
+              }
             }
             this.log.info("[MiHumidifierPlatform][INFO]device size: " + deviceCfgs.length + ", accessories size: " + myAccessories.length);
         }
