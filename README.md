@@ -17,6 +17,9 @@ If you are using Raspberry Pi, please read [Running-HomeBridge-on-a-Raspberry-Pi
 npm install -g miio homebridge-xiaomi-humidifier
 ```
 ## Configuration
+"type" is optional, "Fan" value means that device will be displayed as Fan device, otherwise - as Humidifier/Dehumidifier device (iOS 11 and above)
+
+
 ```
 "platforms": [{
     "platform": "MiHumidifierPlatform",
@@ -32,7 +35,8 @@ npm install -g miio homebridge-xiaomi-humidifier
         "buzzerSwitchName": "Humidifer buzzer switch",
         "buzzerSwitchDisable": true,
         "ledBulbName": "Humidifer led switch",
-        "ledBulbDisable": true
+        "ledBulbDisable": true,
+        "type":"Fan"  
     }]
 }]
 ```
