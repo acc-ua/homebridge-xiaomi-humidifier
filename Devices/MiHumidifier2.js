@@ -57,22 +57,16 @@ MiHumidifier2Accessory.prototype.getServices = function() {
         .setCharacteristic(Characteristic.SerialNumber, "ZhiMi Fan 2");
     services.push(infoService);
 
-    var humidifierService = new Service.HumidifierDehumidifier(this.name);    
-    var activeCharacteristic = humidifierService.getCharacteristic(Characteristic.On);
-//    this.addCharacteristic(Characteristic.CurrentRelativeHumidity);
- // this.addCharacteristic(Characteristic.CurrentHumidifierDehumidifierState);
-  //this.addCharacteristic(Characteristic.TargetHumidifierDehumidifierState);
-  //this.addCharacteristic(Characteristic.Active);
-     var currentHumidifierDehumidifierStateCharacteristic = humidifierService.getCharacteristic(Characteristic.CurrentHumidifierDehumidifierState);
-    //var targetHumidifierDehumidifierStateCharacteristic = humidifierService.addCharacteristic(Characteristic.TargetHumidifierDehumidifierState);
-    
-
+    var humidifierService = new Service.HumidifierDehumidifier(this.name);
     var currentHumidityCharacteristic = humidifierService.getCharacteristic(Characteristic.CurrentRelativeHumidity);
-    var targetHumidityCharacteristic = humidifierService.getCharacteristic(Characteristic.TargetRelativeHumidity);
-    var rotationSpeedCharacteristic = humidifierService.getCharacteristic(Characteristic.RotationSpeed);
+    var currentHumidifierDehumidifierStateCharacteristic = humidifierService.getCharacteristic(Characteristic.CurrentHumidifierDehumidifierState);
+    var targetHumidifierDehumidifierStateCharacteristic = humidifierService.getCharacteristic(Characteristic.TargetHumidifierDehumidifierState);
+    var activeCharacteristic = humidifierService.getCharacteristic(Characteristic.Active);
+    var rotationSpeedCharacteristic = humidifierService.addCharacteristic(Characteristic.RotationSpeed);
+    var targetHumidityCharacteristic = humidifierService.addCharacteristic(Characteristic.TargetRelativeHumidity);
 
 
-    // power
+    // power (Active) - required
     activeCharacteristic
         .on('get', function(callback) {
             that.device.call("get_prop", ["power"]).then(result => {
@@ -98,10 +92,22 @@ MiHumidifier2Accessory.prototype.getServices = function() {
             });
         }.bind(this));
 
+    // Current State - required
+    currentHumidifierDehumidifierStateCharacteristic
+        .on('get', function(callback) {
+            that.device.call("get_prop", ["power"]).then(result => {
+                that.platform.log.debug("[MiHumidifier2Platform][DEBUG]MiHumidifier2Accessory - Active - getActive: " + result);
+                callback(null, result[0] === "on" ? Characteristic.CurrentHumidifierDehumidifierState.HUMIDIFYING : Characteristic.CurrentHumidifierDehumidifierState.INACTIVE);
+            }).catch(function(err) {
+                that.platform.log.error("[MiHumidifier2Platform][ERROR]MiHumidifier2Accessory - Active - getActive Error: " + err);
+                callback(err);
+            });
+        }.bind(this));
 
-currentHumidifierDehumidifierStateCharacteristic.setValue(Characteristic.TargetHumidifierDehumidifierState.HUMIDIFIER);
+    // Target State - required
+    targetHumidifierDehumidifierStateCharacteristic.setValue(Characteristic.TargetHumidifierDehumidifierState.HUMIDIFIER);
 
-
+// Current Humidity - required
 currentHumidityCharacteristic.on('get', function (callback){
         that.device.call("get_prop", ["humidity"]).then(result => {
         that.platform.log.debug("[MiHumidifier2Platform][DEBUG]MiHumidifier2Accessory - Humidity - getHumidity: " + result);
@@ -112,7 +118,7 @@ currentHumidityCharacteristic.on('get', function (callback){
     });
 }.bind(this)); 
 
-
+//Target Humidity - add.Characteristic
 targetHumidityCharacteristic.on('get', function (callback){
         that.device.call("get_prop", ["target_humidity"]).then(result => {
         that.platform.log.debug("[MiHumidifier2Platform][DEBUG]MiHumidifier2Accessory - Target Humidity - getHumidity: " + result);
@@ -136,6 +142,7 @@ targetHumidityCharacteristic.on('get', function (callback){
             });
         }.bind(this)); 
 
+//Rotation Speed - optional characteristic
 var _speedToMode  = {0:'off',1:'silent', 2:'medium', 3:'high'}; 
 var _modeToSpeed = {'off':0,'silent':1, 'medium':2, 'high':3};
     
