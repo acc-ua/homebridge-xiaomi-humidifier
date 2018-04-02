@@ -62,8 +62,9 @@ MiHumidifier2Accessory.prototype.getServices = function() {
     var currentHumidifierDehumidifierStateCharacteristic = humidifierService.getCharacteristic(Characteristic.CurrentHumidifierDehumidifierState);
     var targetHumidifierDehumidifierStateCharacteristic = humidifierService.getCharacteristic(Characteristic.TargetHumidifierDehumidifierState);
     var activeCharacteristic = humidifierService.getCharacteristic(Characteristic.Active);
-    var rotationSpeedCharacteristic = humidifierService.getCharacteristic(Characteristic.RotationSpeed);
+    var rotationSpeedCharacteristic = humidifierService.addCharacteristic(Characteristic.RotationSpeed);
     var targetHumidityCharacteristic = humidifierService.addCharacteristic(Characteristic.TargetRelativeHumidity);
+    var waterLevelCharacteristic = humidifierService.addCharacteristic(Characteristic.WaterLevel);
 
 
     // power (Active) - required
@@ -92,7 +93,7 @@ MiHumidifier2Accessory.prototype.getServices = function() {
             });
         }.bind(this));
 
-    // Current State - required
+    // Current Humidifier/Dehumidifier State - required
     currentHumidifierDehumidifierStateCharacteristic
         .on('get', function(callback) {
             that.device.call("get_prop", ["power"]).then(result => {
@@ -104,7 +105,7 @@ MiHumidifier2Accessory.prototype.getServices = function() {
             });
         }.bind(this));
 
-    // Target State - required
+    // Target Humidifier/Dehumidifier State - required
     targetHumidifierDehumidifierStateCharacteristic.setValue(Characteristic.TargetHumidifierDehumidifierState.HUMIDIFIER);
 
 // Current Humidity - required
@@ -118,7 +119,18 @@ currentHumidityCharacteristic.on('get', function (callback){
     });
 }.bind(this)); 
 
-//Target Humidity - add.Characteristic
+// Current Water Level - add.characteristic
+waterLevelCharacteristic.on('get', function (callback){
+        that.device.call("get_prop", ["depth"]).then(result => {
+        that.platform.log.debug("[MiHumidifier2Platform][DEBUG]MiHumidifier2Accessory - WaterLevel - getWaterLevel: " + result);
+        callback(null, result[0]);
+    }).catch(function(err) {
+        that.platform.log.error("[MiHumidifier2Platform][ERROR]MiHumidifier2Accessory - WaterLevel - getWaterLevel Error: " + err);
+        callback(err);
+    });
+}.bind(this)); 
+
+// Target Humidity - add.Characteristic
 targetHumidityCharacteristic.on('get', function (callback){
         that.device.call("get_prop", ["target_humidity"]).then(result => {
         that.platform.log.debug("[MiHumidifier2Platform][DEBUG]MiHumidifier2Accessory - Target Humidity - getHumidity: " + result);
