@@ -62,7 +62,7 @@ MiHumidifier2Accessory.prototype.getServices = function() {
     var currentHumidifierDehumidifierStateCharacteristic = humidifierService.getCharacteristic(Characteristic.CurrentHumidifierDehumidifierState);
     var targetHumidifierDehumidifierStateCharacteristic = humidifierService.getCharacteristic(Characteristic.TargetHumidifierDehumidifierState);
     var activeCharacteristic = humidifierService.getCharacteristic(Characteristic.Active);
-    var rotationSpeedCharacteristic = humidifierService.getCharacteristic(Characteristic.RotationSpeed);
+    var rotationSpeedCharacteristic = humidifierService.addCharacteristic(Characteristic.RotationSpeed);
     var targetHumidityCharacteristic = humidifierService.addCharacteristic(Characteristic.TargetRelativeHumidity);
     var waterLevelCharacteristic = humidifierService.addCharacteristic(Characteristic.WaterLevel);
 
