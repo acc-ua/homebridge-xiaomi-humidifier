@@ -14,9 +14,12 @@ MiHumidifier2 = function(platform, config) {
     Characteristic = platform.Characteristic;
     UUIDGen = platform.UUIDGen;
     
-    this.device = new miio.Device({
-        address: this.config['ip'],
-        token: this.config['token']
+    miio.device({ address: this.ip, token: this.token })
+    .then(device => {
+                this.device = device;
+    })
+    .catch(err => {
+        console.log('ERROR: ', err);
     });
     
     this.accessories = {};
